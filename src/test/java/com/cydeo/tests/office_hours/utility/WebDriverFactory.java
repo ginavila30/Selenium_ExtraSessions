@@ -6,6 +6,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class WebDriverFactory {
     public static WebDriver getDriver(String browserType){
         browserType=browserType.toLowerCase();
@@ -29,6 +31,7 @@ public class WebDriverFactory {
                 System.out.println("Unknown Browser Type "+browserType);
         }
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
         return driver;
     }
