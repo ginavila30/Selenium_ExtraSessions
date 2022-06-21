@@ -1,7 +1,9 @@
 package com.cydeo.tests.office_hours.day04;
 
 import com.cydeo.tests.base.TestBase;
+import com.cydeo.tests.office_hours.utility.ConfigPropertiesReader;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -26,20 +28,26 @@ Using any test automation framework, Java language (except record/play tools) an
 public class IQ extends TestBase {
     @Test
     public void test() throws InterruptedException {
-        driver.get("https://techcrunch.com/");
+
+        driver.get(ConfigPropertiesReader.getProperty("url"));//https://techcrunch.com/
         List<WebElement>list =driver.findElements(By.xpath("//div[@class=\"river river--homepage \"]//article//span[@class=\"river-byline__authors\"]//a"));
-        for (WebElement each:list) {
-            Assert.assertTrue(!each.getText().isEmpty());
-        }
+        System.out.println(list.size());
         List<WebElement>imgs=driver.findElements(By.xpath("//div[@class=\"river river--homepage \"]//img"));
-        for (WebElement each:imgs) {
-            Assert.assertTrue(each.isDisplayed());
+        for (int i = 0; i < list.size() ; i++) {
+            Assert.assertTrue(list.get(i).isDisplayed());
+            Assert.assertTrue(imgs.get(i).isDisplayed());
         }
+
         WebDriverWait wait = new WebDriverWait(driver,50);
-        WebElement post = driver.findElement(By.xpath("//div[.=\"Celsius Network, one of the biggest crypto lenders, told customers Sunday evening that it is pausing withdrawals, swap, and transfers between accounts in a move that has sparked discussions and pro...\"]"));
+        WebElement post = driver.findElement(By.xpath("(//div[@class=\"river river--homepage \"]//a[@class=\"post-block__title__link\"])[1]"));
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", post);
         wait.until(ExpectedConditions.elementToBeClickable(post));
         post.click();
         String expectedTitle= post.getText();
+
+
         String actualTitle = driver.getTitle();
         Assert.assertTrue(actualTitle.contains(expectedTitle));
         List<WebElement>linksInContent=driver.findElements(By.xpath("//div[@class=\"article-content\"]//p//a"));
