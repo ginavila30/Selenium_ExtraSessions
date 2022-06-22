@@ -21,7 +21,7 @@ public class Tables {
     @Test
     public static  void test1(){
         Driver.getDriver().get("http://practice.cydeo.com/tables");
-        List<WebElement>headers=Driver.getDriver().findElements(By.xpath("//table[@id=\"table1\"]//th"));
+        List<WebElement>headers=Driver.getDriver().findElements(By.xpath("//table[@id=\"table1\"]//span"));
         headers.forEach(each -> System.out.println(each.getText()));
         Assert.assertTrue(headers.size()==6);
         Driver.closeDriver();
