@@ -17,6 +17,10 @@ public class ManagingBrowserWindow {
         driver.manage().window().setPosition(new Point(100,200));//1st arg->from the left 2 arg-> from the top
         //Get the position
         System.out.println(driver.manage().window().getPosition());//
+Integer a = 15;
+int b=2;
+b=a;
+        System.out.println();
 
 
     }

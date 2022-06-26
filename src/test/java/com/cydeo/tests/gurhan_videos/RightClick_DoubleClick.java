@@ -8,6 +8,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class RightClick_DoubleClick {
     @Test
     public static  void test1(){
@@ -30,5 +32,13 @@ public class RightClick_DoubleClick {
         actions.doubleClick(box).perform();
         WebElement message = Driver.getDriver().findElement(By.id("demo"));
         Assert.assertTrue(message.isDisplayed());
+    }
+    @Test
+    public static void test3(){
+        Driver.getDriver().get("http://te.dev.secureci.com/Exercise2.html");
+        List<WebElement> list =Driver.getDriver().findElements(By.xpath("//div[@class=\"slider round\"]"));
+        for (WebElement element : list) {
+            element.click();
+        }
     }
 }
