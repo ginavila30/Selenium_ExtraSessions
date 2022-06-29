@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
 import java.util.List;
 
 /*
@@ -30,15 +31,15 @@ public class Task02Actions {
     public void task1() {
         AutomationPracticeIndexPage obj = new AutomationPracticeIndexPage();
         Driver.getDriver().get(ConfigPropertiesReader.getProperty("automationpractice.index.url"));
-        for (WebElement category: obj.allCategories){
+        for (WebElement category : obj.allCategories) {
             category.isDisplayed();
         }
         Actions actions = new Actions(Driver.getDriver());
         actions.moveToElement(obj.DressesTab).perform();
-       Assert.assertTrue(obj.allCategories.size()>0);
-       for (WebElement category: obj.allCategories){
-           Assert.assertTrue(category.isDisplayed());
-       }
+        Assert.assertTrue(obj.allCategories.size() > 0);
+        for (WebElement category : obj.allCategories) {
+            Assert.assertTrue(category.isDisplayed());
+        }
         Driver.getDriver().close();
 
     }
@@ -59,10 +60,10 @@ public class Task02Actions {
         actions.dragAndDrop(obj.highTatras, obj.trash).perform();
         actions.dragAndDrop(obj.highTatras2, obj.trash).perform();
         //second option
-       // actions.moveToElement(obj.highTatras).clickAndHold().moveToElement(obj.trash).pause(3000).perform();
+        // actions.moveToElement(obj.highTatras).clickAndHold().moveToElement(obj.trash).pause(3000).perform();
 
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 15);
-        wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//ul[@class=\"gallery ui-helper-reset\"]//li"),2));
+        wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//ul[@class=\"gallery ui-helper-reset\"]//li"), 2));
         List<WebElement> trashItems = Driver.getDriver().findElements(By.xpath("//ul[@class=\"gallery ui-helper-reset\"]//li"));
         System.out.println(trashItems.size());
         Assert.assertEquals(trashItems.size(), 2);
@@ -78,19 +79,19 @@ public class Task02Actions {
 	   - Verify error message equals "Invalid Login or Password."
 */
     @Test
-    public void task3(){
+    public void task3() {
         SmartBearWebOrderLoginPage obj = new SmartBearWebOrderLoginPage();
         Driver.getDriver().get("http://secure.smartbearsoftware.com/samples/TestComplete11/WebOrders/Login.aspx");
         Actions actions = new Actions(Driver.getDriver());
         actions.moveToElement(obj.usernameBox).click().keyDown(Keys.SHIFT).sendKeys("test").keyUp(Keys.SHIFT).keyDown(Keys.CONTROL).sendKeys("A").keyUp(Keys.CONTROL).keyDown(Keys.CONTROL).sendKeys("A").keyUp(Keys.CONTROL).keyDown(Keys.CONTROL).sendKeys("C").keyUp(Keys.CONTROL).sendKeys(Keys.TAB).keyDown(Keys.CONTROL).sendKeys("V").keyUp(Keys.CONTROL).sendKeys(Keys.ENTER).perform();
-
+//        Second approach
 //        obj.usernameBox.sendKeys(Keys.chord(Keys.CONTROL,"a"));
 //        obj.usernameBox.sendKeys(Keys.chord(Keys.CONTROL,"c"));
 //        actions.sendKeys(Keys.TAB);
 //        obj.passwordBox.sendKeys(Keys.chord(Keys.CONTROL,"v"));
 //        obj.passwordBox.submit();
-        //obj.login("TEST","TEST");
-       Assert.assertEquals(obj.invalidLoginMessage.getText(),"Invalid Login or Password.");
-       Driver.closeDriver();
+//        obj.login("TEST","TEST");
+        Assert.assertEquals(obj.invalidLoginMessage.getText(), "Invalid Login or Password.");
+        Driver.closeDriver();
     }
 }
