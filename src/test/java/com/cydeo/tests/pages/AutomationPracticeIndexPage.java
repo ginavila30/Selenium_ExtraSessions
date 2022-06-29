@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class AutomationPracticeIndexPage {
     public AutomationPracticeIndexPage(){
         PageFactory.initElements(Driver.getDriver(),this);
@@ -13,14 +15,9 @@ public class AutomationPracticeIndexPage {
     @FindBy(xpath = "(//a[@title=\"Dresses\"])[2]")
     public WebElement DressesTab;
 
-    @FindBy(xpath = "(//a[@title=\"Casual Dresses\"])[2]")
-    public WebElement casualDressesLink;
+    @FindBy(xpath = "(//a[@title=\"Dresses\"])[2]/..//li")
+    public List<WebElement> allCategories;
 
-    @FindBy(xpath = "(//a[@title=\"Evening Dresses\"])[2]")
-    public WebElement eveningDressesLink;
-
-    @FindBy(xpath = "(//a[@title=\"Summer Dresses\"])[2]")
-    public WebElement summerDressesLink;
 
 
 

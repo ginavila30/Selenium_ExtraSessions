@@ -33,7 +33,7 @@ public class Task01FileUpload {
     Robot rb = new Robot();
 
     // copying File path to Clipboard
-    StringSelection str = new StringSelection("C:\\Users\\majid\\IdeaProjects\\Selenium_ExtraSessions\\Selenium_ExtraSessions\\src\\test\\java\\com\\cydeo\\tests\\office_hours\\day06\\upload.txt");
+    StringSelection str = new StringSelection("/Users/ginaavila/IdeaProjects/Selenium_ExtraSessions/src/test/resources/fileUpload/upload.txt");
     Toolkit.getDefaultToolkit().getSystemClipboard().setContents(str, null);
 
     // press Contol+V for pasting
