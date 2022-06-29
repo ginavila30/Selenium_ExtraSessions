@@ -4,6 +4,7 @@ import com.cydeo.tests.office_hours.utility.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -33,6 +34,12 @@ public class Task04ExplicitWait {
         WebElement btn3=Driver.getDriver().findElement(By.id("button03"));
         wait.until(ExpectedConditions.elementToBeClickable(btn3));
         btn3.click();
+        WebElement errormsg = Driver.getDriver().findElement(By.id("buttonmessage"));
+        Assert.assertEquals(errormsg.getText(),"All Buttons Clicked");
+        wait.until(ExpectedConditions.textToBePresentInElement(errormsg,"Clickable Buttons"));
+        Assert.assertEquals(errormsg.getText(),"Clickable Buttons");
+        wait.until(ExpectedConditions.textToBePresentInElement(errormsg,"Click Buttons In Order"));
+        Assert.assertEquals(errormsg.getText(),"Click Buttons In Order");
 
 
     }

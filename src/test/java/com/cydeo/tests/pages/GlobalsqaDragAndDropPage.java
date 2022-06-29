@@ -21,7 +21,7 @@ public class GlobalsqaDragAndDropPage {
     @FindBy(xpath = "//div[@class=\"ui-widget-content ui-state-default ui-droppable\"]")
     public  WebElement trash;
 
-    @FindBy(xpath = "//li[@style=\"display: list-item; width: 48px;\"]")
+    @FindBy(xpath = "//ul[@class=\"gallery ui-helper-reset\"]//li")
     public List<WebElement>trashItems;
 
     @FindBy(xpath = "//iframe[@class=\"demo-frame lazyloaded\"]")
