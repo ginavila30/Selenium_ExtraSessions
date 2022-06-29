@@ -10,13 +10,9 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import javax.swing.*;
-import java.lang.module.Configuration;
 import java.util.List;
 
 /*
@@ -86,13 +82,15 @@ public class Task02Actions {
         SmartBearWebOrderLoginPage obj = new SmartBearWebOrderLoginPage();
         Driver.getDriver().get("http://secure.smartbearsoftware.com/samples/TestComplete11/WebOrders/Login.aspx");
         Actions actions = new Actions(Driver.getDriver());
-        actions.keyDown(Keys.SHIFT).sendKeys("test").keyUp(Keys.SHIFT).perform();
-       obj.usernameBox.sendKeys(Keys.chord(Keys.COMMAND,"a"));
-       obj.usernameBox.sendKeys(Keys.chord(Keys.COMMAND,"c"));
-       actions.sendKeys(Keys.TAB);
-       obj.passwordBox.sendKeys(Keys.chord(Keys.COMMAND,"v"));
-       obj.passwordBox.submit();
+        actions.moveToElement(obj.usernameBox).click().keyDown(Keys.SHIFT).sendKeys("test").keyUp(Keys.SHIFT).keyDown(Keys.CONTROL).sendKeys("A").keyUp(Keys.CONTROL).keyDown(Keys.CONTROL).sendKeys("A").keyUp(Keys.CONTROL).keyDown(Keys.CONTROL).sendKeys("C").keyUp(Keys.CONTROL).sendKeys(Keys.TAB).keyDown(Keys.CONTROL).sendKeys("V").keyUp(Keys.CONTROL).sendKeys(Keys.ENTER).perform();
+
+//        obj.usernameBox.sendKeys(Keys.chord(Keys.CONTROL,"a"));
+//        obj.usernameBox.sendKeys(Keys.chord(Keys.CONTROL,"c"));
+//        actions.sendKeys(Keys.TAB);
+//        obj.passwordBox.sendKeys(Keys.chord(Keys.CONTROL,"v"));
+//        obj.passwordBox.submit();
         //obj.login("TEST","TEST");
-        //Assert.assertEquals(obj.invalidLoginMessage.getText(),"Invalid Login or Password.");
+       Assert.assertEquals(obj.invalidLoginMessage.getText(),"Invalid Login or Password.");
+       Driver.closeDriver();
     }
 }
