@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class ConfigPropertiesReader {
-  private static   Properties properties= new Properties();
-  static {
+
+   private static   Properties properties= new Properties();
+
+    static {
       try{
       FileInputStream file = new FileInputStream("configuration.properties");
       properties.load(file);
@@ -16,7 +18,8 @@ public class ConfigPropertiesReader {
       }
   }
 
-  public static String getProperty(String keyword){
+  public static String getProperty(String keyword){// getter
+
       return properties.getProperty(keyword);
   }
 

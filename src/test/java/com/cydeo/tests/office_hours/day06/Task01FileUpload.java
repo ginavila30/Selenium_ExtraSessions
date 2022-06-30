@@ -3,6 +3,7 @@ package com.cydeo.tests.office_hours.day06;
 import com.cydeo.tests.office_hours.utility.ConfigPropertiesReader;
 import com.cydeo.tests.office_hours.utility.Driver;
 import com.cydeo.tests.pages.Herokuapp_UploadFile_Page;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

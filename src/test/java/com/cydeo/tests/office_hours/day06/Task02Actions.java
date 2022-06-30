@@ -77,20 +77,21 @@ public class Task02Actions {
 			email    : TEST
 	   - Click Login Button
 	   - Verify error message equals "Invalid Login or Password."
-*/
+*/ //GINA
     @Test
     public void task3() {
         SmartBearWebOrderLoginPage obj = new SmartBearWebOrderLoginPage();
         Driver.getDriver().get("http://secure.smartbearsoftware.com/samples/TestComplete11/WebOrders/Login.aspx");
         Actions actions = new Actions(Driver.getDriver());
-        actions.moveToElement(obj.usernameBox).click().keyDown(Keys.SHIFT).sendKeys("test").keyUp(Keys.SHIFT).keyDown(Keys.CONTROL).sendKeys("A").keyUp(Keys.CONTROL).keyDown(Keys.CONTROL).sendKeys("A").keyUp(Keys.CONTROL).keyDown(Keys.CONTROL).sendKeys("C").keyUp(Keys.CONTROL).sendKeys(Keys.TAB).keyDown(Keys.CONTROL).sendKeys("V").keyUp(Keys.CONTROL).sendKeys(Keys.ENTER).perform();
-//        Second approach
+      actions.moveToElement(obj.usernameBox).click().keyDown(Keys.SHIFT).sendKeys("test").keyUp(Keys.SHIFT).keyDown(Keys.CONTROL).sendKeys("A").keyUp(Keys.CONTROL).keyDown(Keys.CONTROL).sendKeys("C").keyUp(Keys.CONTROL).sendKeys(Keys.TAB).keyDown(Keys.CONTROL).sendKeys("V").keyUp(Keys.CONTROL).sendKeys(Keys.ENTER).perform();
+       // Second approach
+//        actions.moveToElement(obj.usernameBox).click().keyDown(Keys.SHIFT).sendKeys("test").keyUp(Keys.SHIFT).perform();
 //        obj.usernameBox.sendKeys(Keys.chord(Keys.CONTROL,"a"));
 //        obj.usernameBox.sendKeys(Keys.chord(Keys.CONTROL,"c"));
 //        actions.sendKeys(Keys.TAB);
-//        obj.passwordBox.sendKeys(Keys.chord(Keys.CONTROL,"v"));
-//        obj.passwordBox.submit();
-//        obj.login("TEST","TEST");
+//        obj.passwordBox.sendKeys(Keys.chord(Keys.CONTROL,"v")+Keys.ENTER);
+
+       // obj.login("TEST","TEST");
         Assert.assertEquals(obj.invalidLoginMessage.getText(), "Invalid Login or Password.");
         Driver.closeDriver();
     }
