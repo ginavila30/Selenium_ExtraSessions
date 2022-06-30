@@ -5,6 +5,7 @@ import com.cydeo.tests.office_hours.utility.Driver;
 import com.cydeo.tests.pages.DemoBlazeIndexPage;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -38,21 +39,23 @@ public class InterviewQuestion {
     DemoBlazeIndexPage obj = new DemoBlazeIndexPage();
 
     @Test
-    public void test(){
+    public void test() throws InterruptedException {
         Driver.getDriver().get(ConfigPropertiesReader.getProperty("demoblaze.index.url"));
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(),15);
         Faker faker = new Faker();
         obj.laptopsTab.click();
-        wait.until(ExpectedConditions.visibilityOf(obj.sonyVaioI5));
-        obj.sonyVaioI5.click();
+        wait.until(ExpectedConditions.elementToBeClickable(obj.sonyVaioI5));
+        JavascriptExecutor jse =(JavascriptExecutor)Driver.getDriver();
+        jse.executeScript("arguments[0].click()",obj.sonyVaioI5);
         obj.addToCart.click();
         wait.until(ExpectedConditions.alertIsPresent());
         Driver.getDriver().switchTo().alert().accept();
         Driver.getDriver().navigate().back();
         Driver.getDriver().navigate().back();
         obj.phonesTab.click();
-        wait.until(ExpectedConditions.visibilityOf(obj.samsungGalaxyS6));
-        obj.samsungGalaxyS6.click();
+        //wait.until(ExpectedConditions.elementToBeClickable(obj.samsungGalaxyS6));
+        Thread.sleep(3000);
+        jse.executeScript("arguments[0].click()",obj.samsungGalaxyS6);
         wait.until(ExpectedConditions.visibilityOf(obj.addToCart));
         obj.addToCart.click();
         wait.until(ExpectedConditions.alertIsPresent());

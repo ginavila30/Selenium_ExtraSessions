@@ -20,7 +20,7 @@ public class DemoBlazeIndexPage {
     @FindBy (linkText = "Monitors")
     public WebElement monitorsTab;
 
-    @FindBy (linkText = "Sony vaio i5")
+    @FindBy (xpath = "(//a[@href=\"prod.html?idp_=8\"])[1]")
     public WebElement sonyVaioI5;
 
     @FindBy(linkText = "Add to cart")

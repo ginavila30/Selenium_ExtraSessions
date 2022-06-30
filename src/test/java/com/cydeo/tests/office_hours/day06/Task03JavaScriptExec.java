@@ -23,7 +23,7 @@ public class Task03JavaScriptExec {
 @Test
     public void task1() {
     Driver.getDriver().get("https://techcrunch.com/");
-    WebElement techCrunch = Driver.getDriver().findElement(By.xpath("//li[@class=\"menu__item menu__item--has-submenu menu__item--no-click\"]//a[.=\"TechCrunch\"]"));
+    WebElement techCrunch = Driver.getDriver().findElement(By.xpath("//a[@data-ga-event-label=\"TechCrunch\"]"));
     JavascriptExecutor jse= (JavascriptExecutor) Driver.getDriver();
     jse.executeScript("arguments[0].scrollIntoView(true)",techCrunch);
     techCrunch.click();
@@ -40,20 +40,19 @@ public class Task03JavaScriptExec {
 		- Click apply filters
 		- Print count of results*/
     @Test
-    public void task2(){
+    public void task2() throws InterruptedException {
         Driver.getDriver().get("https://www.etsy.com");
         WebElement searchBox = Driver.getDriver().findElement(By.id("global-enhancements-search-query"));
         searchBox.sendKeys("wooden spoon"+ Keys.ENTER);
         WebElement filter = Driver.getDriver().findElement(By.cssSelector("#search-filter-button"));
         filter.click();
-        WebElement freeShipping = Driver.getDriver().findElement(By.cssSelector("#special-offers-free-shipping"));
+        WebElement freeShipping = Driver.getDriver().findElement(By.name("free_shipping"));
         JavascriptExecutor jse = (JavascriptExecutor)Driver.getDriver();
-        jse.executeScript("arguments[0].click",freeShipping);
+        jse.executeScript("arguments[0].click()",freeShipping);
         WebElement apply = Driver.getDriver().findElement(By.xpath("//button[contains(.,\"Apply\")]"));
         apply.click();
         WebElement results = Driver.getDriver().findElement(By.xpath("//span[@class=\"wt-display-inline-flex-sm\"]//span"));
         System.out.println(results.getText());
         Driver.closeDriver();
-
     }
 }
